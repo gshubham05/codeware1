@@ -71,7 +71,7 @@ const courseStudents = [
     name: "Anurag Rawat",
     role: "Mern Stack",
     image: "/intern/anurag.jpg",
-    college: "Graphic Era Dehradun",
+    college: "DBIT Dehradun",
     placed: false,
   },
   {
@@ -79,7 +79,7 @@ const courseStudents = [
     name: "Aman",
     role: "Mern Stack",
     image: "/intern/Aman.jpg",
-    college: "Graphic Era Dehradun",
+    college: "DBIT Dehradun",
     placed: false,
   },
   {
@@ -106,7 +106,7 @@ const courseStudents = [
     name: "Sriyanshu Nautiyal",
     role: "Full Stack Development",
     image:
-      "https://api.dicebear.com/7.x/initials/svg?seed=SRI%20NAU&backgroundColor=0D8ABC&textColor=ffffff",
+      "/intern/sriyanshu.jpeg",
 
     college: "Graphic Era Dehradun Uttarakhand",
     placed: false,
