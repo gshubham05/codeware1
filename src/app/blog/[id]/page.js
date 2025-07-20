@@ -2,17 +2,50 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
+// --- SEO: Next.js Metadata Head export (App Router) ---
+export async function generateMetadata({ params }) {
+  const post = await getBlogPost(params.id);
+  if (!post) {
+    return {
+      title: "Blog Not Found",
+      description: "Blog post could not be loaded.",
+    };
+  }
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      images: [
+        {
+          url: post.image || "/default-og-image.png",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+      type: "article",
+      publishedTime: post.date,
+      siteName: "Codeware Blog",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [post.image || "/default-og-image.png"],
+    },
+  };
+}
+
+// --- Blog fetch function ---
 async function getBlogPost(id) {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`,
-      {
-        cache: "no-store",
-      }
+      { cache: "no-store" }
     );
-    if (!res.ok) {
-      return null;
-    }
+    if (!res.ok) return null;
     const data = await res.json();
     return data;
   } catch (error) {
@@ -21,6 +54,7 @@ async function getBlogPost(id) {
   }
 }
 
+// --- Main BlogPost component ---
 export default async function BlogPost({ params }) {
   const { id } = params;
   const post = await getBlogPost(id);
@@ -56,8 +90,11 @@ export default async function BlogPost({ params }) {
         </div>
       </div>
 
-      {/* Blog Content */}
-      <div className="mt-6 text-lg leading-8 text-gray-700">{post.content}</div>
+      {/* Blog Content (HTML!) */}
+      <div
+        className="mt-6 text-lg leading-8 text-gray-700 prose prose-lg max-w-none"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
       {/* Author Info */}
       <div className="mt-12 p-6 border-t">
