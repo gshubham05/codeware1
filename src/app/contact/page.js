@@ -126,11 +126,12 @@ export default function ContactUs() {
                     Karanpur, Dehradun, Uttarakhand 248001
                   </li>
                   <li className="flex items-center text-lg">
-                    <FaEnvelope className="mr-3 text-purple-300" />
-                    info@codewareit.com
+                      <a href="mailto:gshubham.05@gmail.com">  <FaEnvelope className="mr-3 text-purple-300" />
+                    gshubham.05@gmail.com</a>
+                  
                   </li>
                   <li className="flex items-center text-lg">
-                    <FaPhone className="mr-3 text-purple-300" /> +91 9837218345
+                  <a href="tel:9837218345">  <FaPhone className="mr-3 text-purple-300" /> +91 9837218345</a>
                   </li>
                 </ul>
               </div>
