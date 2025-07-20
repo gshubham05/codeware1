@@ -89,10 +89,10 @@ export default function Footer() {
               Uttarakhand 248001
             </li>
             <li>
-              <FaEnvelope className="inline mr-2" /> info@codewareit.com
+              <a href="mailto:gshubham.05@gmail.com"><FaEnvelope className="inline mr-2" /> gshubham.05@gmail.com</a>
             </li>
             <li>
-              <FaPhoneAlt className="inline mr-2" /> +91 9837218345
+              <a href="tel:9837218345"><FaPhoneAlt className="inline mr-2" /> +91 9837218345</a>
             </li>
           </ul>
         </div>
