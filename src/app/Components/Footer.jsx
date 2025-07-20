@@ -85,8 +85,11 @@ export default function Footer() {
           <ul className="mt-2 space-y-2 text-gray-300">
             <li>Codeware IT Pvt Ltd</li>
             <li>
+              <a href="https://www.google.com/maps/dir/30.3366144,78.053376/Codeware+IT+Pvt+Ltd,+Chugh+Colony,+27,+Nalapani+Rd,+Dehradun,+Uttarakhand+248001/@30.3308342,78.0463993,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3909298618cc0ad3:0xf57f033590318d10!2m2!1d78.0615611!2d30.33026?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" >
               <FaMapMarkerAlt className="inline mr-2" /> Karanpur Dehradun,
               Uttarakhand 248001
+              </a>
+              
             </li>
             <li>
               <a href="mailto:gshubham.05@gmail.com"><FaEnvelope className="inline mr-2" /> gshubham.05@gmail.com</a>
