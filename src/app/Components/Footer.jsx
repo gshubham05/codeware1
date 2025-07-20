@@ -128,7 +128,7 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="text-center mt-6 text-gray-400 text-sm">
-        © 2025 Codeware IT Pvt Ltd. All rights reserved.
+       <a href="https://wa.me/message/WF4V4DY7R53QH1"> © 2025 Codeware IT Pvt Ltd. All rights reserved.</a>
       </div>
     </footer>
   );
