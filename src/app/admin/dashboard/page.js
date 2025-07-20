@@ -82,9 +82,7 @@ export default function Dashboard() {
       "upload_preset",
       process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
     );
-
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-
     const response = await fetch(
       `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
       {
@@ -92,13 +90,10 @@ export default function Dashboard() {
         body: formData,
       }
     );
-
     const data = await response.json();
-
     if (!response.ok) {
       throw new Error(data.error?.message || "Image upload failed");
     }
-
     return data.secure_url;
   };
 
@@ -112,7 +107,7 @@ export default function Dashboard() {
 
       // Upload image if a new one was selected
       if (imageFile) {
-        imageUrl = await uploadImageToCloudinary(imageFile); // ✅ FIXED
+        imageUrl = await uploadImageToCloudinary(imageFile);
         if (!imageUrl) {
           alert("Image upload failed");
           setLoading(false);
@@ -331,6 +326,11 @@ export default function Dashboard() {
                       {blog.title}
                     </h3>
                     <p className="text-indigo-600">{blog.description}</p>
+                    {/* ✅ Renders blog.content as HTML */}
+                    <div
+                      className="prose mt-3"
+                      dangerouslySetInnerHTML={{ __html: blog.content }}
+                    />
                     {blog.image && (
                       <img
                         src={blog.image}
