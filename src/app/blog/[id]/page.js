@@ -1,117 +1,63 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-// --- SEO: Next.js Metadata Head export (App Router) ---
-export async function generateMetadata({ params }) {
-  const post = await getBlogPost(params.id);
-  if (!post) {
-    return {
-      title: "Blog Not Found",
-      description: "Blog post could not be loaded.",
+export default function BlogDetailPage() {
+  const { id: currentBlogId } = useParams();
+
+  const [blog, setBlog] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const blogRes = await fetch(`/api/blogs/${currentBlogId}`);
+      if (blogRes.ok) setBlog(await blogRes.json());
     };
-  }
-  return {
-    title: post.title,
-    description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      images: [
-        {
-          url: post.image || "/default-og-image.png",
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
-      type: "article",
-      publishedTime: post.date,
-      siteName: "Codeware Blog",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      images: [post.image || "/default-og-image.png"],
-    },
-  };
-}
+    if (currentBlogId) fetchData();
+  }, [currentBlogId]);
 
-// --- Blog fetch function ---
-async function getBlogPost(id) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/blogs/${id}`,
-      { cache: "no-store" }
-    );
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching blog post:", error);
-    return null;
-  }
-}
-
-// --- Main BlogPost component ---
-export default async function BlogPost({ params }) {
-  const { id } = params;
-  const post = await getBlogPost(id);
-
-  if (!post) {
-    return notFound();
-  }
+  if (!blog) return <p className="p-8 text-center">Loading blog...</p>;
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-[5.3rem]">
-      {/* Image with overlay text */}
-      <div className="relative rounded-2xl overflow-hidden shadow-lg mb-8">
-        {post.image && (
-          <Image
-            src={post.image}
-            alt={post.title}
-            width={1200}
-            height={600}
-            className="w-full h-80 object-cover"
-            priority
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white">
-            {post.title}
-          </h1>
-          <p className="text-gray-300 mt-2">{post.description}</p>
-          <div className="flex items-center gap-4 mt-4 text-white text-sm">
-            <span>
-              {post.date} • {post.readTime || "2 min read"}
-            </span>
+    <div className="w-full mx-auto p-4 mt-[75px]">
+      <article className="w-full bg-white p-6">
+        {blog.image && (
+          <div className="mb-4">
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              width={1200}
+              height={600}
+              className="w-full h-60 object-cover rounded-lg"
+            />
           </div>
+        )}
+        <h1 className="text-xl font-bold mb-2 sm:text-3xl">{blog.title}</h1>
+        <div className="text-sm text-gray-600 mb-4">
+          {blog.author && <span>By {blog.author}</span>}
+          {blog.category && (
+            <span className="ml-2 bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs">
+              {blog.category}
+            </span>
+          )}
         </div>
-      </div>
-
-      {/* Blog Content (HTML!) */}
-      <div
-        className="mt-6 text-lg leading-8 text-gray-700 prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-
-      {/* Author Info */}
-      <div className="mt-12 p-6 border-t">
-        <p className="text-gray-500 text-sm">
-          Passionate about web development and teaching.
-        </p>
-      </div>
-
-      {/* Back Button */}
-      <div className="mt-8 text-center">
+        <div
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: blog.description }}
+        />
+        <div
+          className="prose max-w-none prose-pre:whitespace-pre-wrap prose-pre:break-words prose-pre:overflow-x-auto"
+          dangerouslySetInnerHTML={{ __html: blog.content }}
+        />
         <Link
           href="/blog"
-          className="text-blue-600 hover:text-blue-800 font-medium"
+          className="inline-block mb-4 text-sm text-blue-600 hover:text-blue-800 hover:underline transition mt-6"
         >
-          ← Back to Blog
+          ← Back to Blogs
         </Link>
-      </div>
-    </section>
+      </article>
+    </div>
   );
 }
