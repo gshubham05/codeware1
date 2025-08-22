@@ -18,7 +18,7 @@ export const metadata = {
   title:
     "Best Programming, MERN Stack & Internship Institute in Dehradun | CodewareIT Pvt Ltd",
   description:
-    "Join CodewareIT Pvt Ltd, the top programming and industrial training institute in Dehradun. Expert training in MERN Stack, Java, Python, PHP, and real-worl",
+    "Join CodewareIT Pvt Ltd, the top programming and industrial training institute in Dehradun. Expert training in MERN Stack, Java, Python, PHP, Coding Internships, and real-world projects.",
   keywords: [
     "best computer institute in Dehradun",
     "best python institute in Dehradun",
@@ -43,13 +43,25 @@ export const metadata = {
     "industrial training in India",
     "summer internship in Dehradun",
     "summer internship in India",
+    // ✅ Extra SEO keywords for internships & coding
+    "best internship in IT in Dehradun",
+    "best coding internship in IT in Dehradun",
+    "IT training and internship Dehradun",
+    "coding bootcamp in Dehradun",
+    "web development internship in Dehradun",
+    "full stack internship in Dehradun",
+    "best internship in programming in Dehradun",
+    "software development internship in Dehradun",
+    "best internship in IT in India",
+    "coding internship in IT in India",
   ],
   author: "Shubham Goyal",
   publisher: "Codeware IT Pvt Ltd",
+
   openGraph: {
-    title: "CodewareIT Pvt Ltd - Best Training Institute in Dehradun & India",
+    title: "CodewareIT Pvt Ltd - Best Training & Internship in IT, Dehradun",
     description:
-      "Join Codeware IT for the best internship and training programs in Python, Java, MERN, MEAN, PHP & Full Stack Development.",
+      "Join Codeware IT Pvt Ltd for the best internships & training in Python, Java, MERN, MEAN, PHP & Full Stack Development in Dehradun & India.",
     url: "https://www.codewareit.in",
     siteName: "Codeware IT Pvt Ltd",
     images: [
@@ -63,6 +75,26 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+
+  // ✅ Twitter card for SEO
+  twitter: {
+    card: "summary_large_image",
+    title: "CodewareIT Pvt Ltd - Best IT Internship & Training in Dehradun",
+    description:
+      "Get the best Coding & IT Internship in Dehradun with Codeware IT Pvt Ltd. Learn MERN, Next.js, Java, Python & Full Stack Development.",
+    images: ["https://www.codewareit.in/og-image.jpg"],
+    creator: "@codewareit", // replace with your Twitter handle if any
+  },
+
+  // ✅ Favicon & Manifest
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }) {
@@ -70,7 +102,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        cz-shortcut-listen="true"
       >
         <Navbar />
         {children}
