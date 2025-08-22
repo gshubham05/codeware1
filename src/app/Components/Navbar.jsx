@@ -24,11 +24,11 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        className="bg-[#040A26] shadow-md px-2 fixed top-0 left-0 w-full z-50"
-        onMouseLeave={() => handleMouseLeave("Courses")}
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <nav className="bg-[#040A26] shadow-md px-2 fixed top-0 left-0 w-full z-50">
+        <div
+          className="max-w-7xl mx-auto flex justify-between items-center"
+          onMouseLeave={() => handleMouseLeave("Courses")}
+        >
           <div className="flex items-center">
             <Link href="/">
               <Image
@@ -63,83 +63,56 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex space-x-12 text-white items-center">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
+            <li onMouseLeave={() => handleMouseLeave("Courses")}>
               <Link href="/Aboutus">About Us</Link>
             </li>
 
             {/* Courses Dropdown */}
             <li
-              className="relative"
+              className="relative group"
               onMouseEnter={() => handleMouseEnter("Courses")}
             >
-              <Link
-                href="/Courses"
-                className="flex items-center space-x-1 focus:outline-none"
-              >
-                <span>Courses</span>
-                <FaChevronDown className="text-white" />
-              </Link>
+              <div className="flex items-center space-x-1 cursor-pointer">
+                <span className="text-white">Courses</span>
+                <FaChevronDown className="text-white text-sm mt-1" />
+              </div>
+
               {openMenu === "Courses" && (
-                <div className="absolute mt-2 bg-white text-black shadow-lg rounded-lg w-80">
-                  <ul className="p-2">
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/full-stack-development">
-                        FULL STACK DEVELOPMENT
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/mern-stack-development">
-                        MERN STACK DEVELOPMENT
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/programming-languages">
-                        PROGRAMMING LANGUAGES
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/mean-stack-development">
-                        MEAN STACK DEVELOPMENT
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/industrial-training">
-                        INDUSTRIAL TRAINING
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/seo-digital-marketing">
-                        SEO AND DIGITAL MARKETING
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/graphic-design">
-                        GRAPHIC DESIGNING
-                      </Link>
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-100">
-                      <Link href="/Courses/data-structures-algorithms">
-                        DATA STRUCTURE AND ALGORITHMS
-                      </Link>
-                    </li>
-                  </ul>
+                <div className="absolute top-full left-[-4rem] mt-6 text-white shadow-2xl rounded-xl w-64 p-1 z-50">
+                  <div className="bg-[#0A1C55] rounded-xl overflow-hidden">
+                    <ul className="flex flex-col py-2">
+                      <li className="flex items-center px-4 py-3 hover:bg-blue-600 transition-all duration-200 gap-2">
+                        <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-md">
+                          💻
+                        </span>
+                        <Link href="/Coursescoding" className="w-full">
+                          Coding Courses
+                        </Link>
+                      </li>
+                      <li className="flex items-center px-4 py-3 hover:bg-blue-600 transition-all duration-200 gap-2">
+                        <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-md">
+                          🎨
+                        </span>
+                        <Link href="/Coursesnoncoding" className="w-full">
+                          Non-Coding Courses
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               )}
             </li>
 
-            <li>
+            <li onMouseLeave={() => handleMouseLeave("Courses")}>
               <Link href="/blog">Blog</Link>
             </li>
-            <li>
+            <li onMouseLeave={() => handleMouseLeave("Courses")}>
               <Link href="/intern">Internship</Link>
             </li>
-            <li>
+            <li onMouseLeave={() => handleMouseLeave("Courses")}>
               <Link href="/Students">Students</Link>
             </li>
-            <li>
+            <li onMouseLeave={() => handleMouseLeave("Courses")}>
               <Link
                 href="/contact"
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hidden md:block"
@@ -153,45 +126,99 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed top-[5rem] left-0 w-full h-screen bg-[url('/mobileimg.jpg')] z-40 p-4 md:hidden">
-          <ul className="mt-8 text-white">
-            <li className="py-2">
-              <Link href="/" onClick={toggleMobileMenu}>
-                Home
-              </Link>
+        <div className="fixed top-[5rem] left-0 w-full h-screen bg-[#040A26] z-50 p-4 md:hidden">
+          <ul className="text-white space-y-3">
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">ℹ️</span>
+                <Link
+                  href="/Aboutus"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  About Us
+                </Link>
+              </div>
             </li>
-            <li className="py-2">
-              <Link href="/Aboutus" onClick={toggleMobileMenu}>
-                About Us
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">💻</span>
+                <Link
+                  href="/Coursescoding"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Coding Courses
+                </Link>
+              </div>
             </li>
-
-            <li className="py-2 relative">
-              <Link href="/Courses" onClick={toggleMobileMenu}>
-                Courses
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">📚</span>
+                <Link
+                  href="/Coursesnoncoding"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Non-Coding Courses
+                </Link>
+              </div>
             </li>
-            <li className="py-2 relative">
-              <Link href="/intern" onClick={toggleMobileMenu}>
-                Internship
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">🧑‍💼</span>
+                <Link
+                  href="/intern"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Internship
+                </Link>
+              </div>
             </li>
-            <li className="py-2 relative">
-              <Link href="/Students" onClick={toggleMobileMenu}>
-                Students
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">👨‍🎓</span>
+                <Link
+                  href="/Students"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Students
+                </Link>
+              </div>
             </li>
-            <li className="py-2">
-              <Link href="/blog" onClick={toggleMobileMenu}>
-                Blog
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">📰</span>
+                <Link
+                  href="/blog"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Blog
+                </Link>
+              </div>
             </li>
-            <li className="py-2">
-              <Link href="/contact" onClick={toggleMobileMenu}>
-                Contact
-              </Link>
+            <li className="flex items-center justify-between p-3 rounded-lg hover:bg-[#0C1233] transition">
+              <div className="flex items-center gap-3">
+                <span className="text-lg">📞</span>
+                <Link
+                  href="/contact"
+                  onClick={toggleMobileMenu}
+                  className="text-sm font-medium"
+                >
+                  Contact
+                </Link>
+              </div>
             </li>
           </ul>
+          <div className="border-t border-t-[#0C1233] mt-4 pt-4">
+            <p className="text-sm text-center text-white">
+              &copy; {new Date().getFullYear()} Codeware IT. All rights
+              reserved.
+            </p>
+          </div>
         </div>
       )}
     </>

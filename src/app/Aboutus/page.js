@@ -35,14 +35,6 @@ const historyData = [
       By leveraging technology, we ensured that learning became more practical, dynamic, and impactful.`,
     icon: BookOpen,
   },
-  {
-    year: "2026",
-    title: "Future Growth & Innovations",
-    description: `As we move forward, our focus is on expanding globally, adopting AI-driven education, and personalizing learning experiences.
-      We aim to integrate smart analytics to track student progress, provide customized feedback, and enhance outcomes.
-      The future holds endless possibilities, and we are committed to shaping the next generation of learners and leaders.`,
-    icon: Calendar,
-  },
 ];
 
 export default function About() {
@@ -59,35 +51,38 @@ export default function About() {
       </div>
 
       {/* Company Section */}
-      <div className="flex flex-col-reverse lg:flex-row-reverse items-center mt-20 lg:mt-40 gap-10 lg:gap-40 px-6 lg:px-20">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start mt-20 lg:mt-32 gap-12 lg:gap-24 px-6 lg:px-20">
         {/* Left Side Image */}
-        <img
-          src="/codewarelogo.png"
-          width={100}
-          height={100}
-          alt="Company"
-          loading="lazy"
-          className="w-44 h-44 sm:mr-[12rem] sm:w-[18rem] sm:h-[18rem] rounded-full border-4 border-gray-300 shadow-lg"
-        />
+        <div className="flex-shrink-0">
+          <img
+            src="/codewarelogo.png"
+            alt="Codeware Logo"
+            loading="lazy"
+            className="w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72  shadow-xl object-contain"
+          />
+        </div>
 
         {/* Right Side Content */}
-        <div className="max-w-lg text-center lg:text-left">
-          <h1 className="font-bold  sm:text-2xl mb-4 text-2xl">
-            About Codeware Private Ltd
+        <div className="max-w-2xl text-center lg:text-left">
+          <h1 className="font-extrabold text-3xl sm:text-4xl mb-6 text-gray-900">
+            About <span className="text-blue-600">CodewareIT Private Ltd</span>
           </h1>
-          <p className="text-gray-800 text-sm sm:text-lg leading-relaxed">
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
             Founded on <strong>March 2, 2023</strong>, in{" "}
             <strong>Dehradun</strong>,<strong> Codeware Private Ltd</strong> was
             established under the visionary leadership of{" "}
             <strong>Shubham Goyal</strong>. With a strong commitment to
             excellence, the company specializes in <strong>training</strong>,
             delivering innovative solutions tailored to meet the evolving needs
-            of clients. Guided by a mission to drive growth and innovation,{" "}
-            <strong>Shubham Goyal</strong> and his team work tirelessly to
-            provide high-quality products and services while fostering long-term
-            partnerships. As a forward-thinking organization, the company
-            continues to expand its presence, ensuring customer satisfaction and
-            sustainable success.
+            of clients.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed mt-4">
+            Guided by a mission to drive growth and innovation,{" "}
+            <strong>Shubham Goyal</strong>
+            and his team work tirelessly to provide high-quality products and
+            services while fostering long-term partnerships. As a
+            forward-thinking organization, the company continues to expand its
+            presence, ensuring customer satisfaction and sustainable success.
           </p>
         </div>
       </div>

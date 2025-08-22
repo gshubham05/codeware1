@@ -2,4 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes borderGlow {
+  0% {
+    border-image-source: linear-gradient(90deg, red, blue);
+  }
+  50% {
+    border-image-source: linear-gradient(90deg, blue, red);
+  }
+  100% {
+    border-image-source: linear-gradient(90deg, red, blue);
+  }
+}
+
+.animated-border {
+  border-width: 3px;
+  border-style: solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(90deg, red, blue);
+  animation: borderGlow 3s linear infinite;
+ 
+
+}
 

@@ -1,21 +1,29 @@
+"use client"; // 👈 Needed in Next.js (App Router)
+
 import React from "react";
+import Link from "next/link";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-function notfound() {
+const LottiePlayer = () => {
   return (
-    <div className="text-center flex items-center justify-center flex-col gap-3 min-h-screen">
-      <h1 className="text-6xl font-bold text-red-600">404</h1>
-      <p className="mt-4 text-xl text-gray-600">Page Not Found</p>
-      <p className="mt-4 text-sm text-gray-500">
-        Oops! The page you're looking for doesn't exist.
-      </p>
-      <a
-        href="/"
-        className="mt-6 inline-block text-lg text-blue-500 hover:text-blue-700"
-      >
-        Go back to the Homepage
-      </a>
-    </div>
+    <>
+      <div className=" items-center justify-center mt-8">
+        <DotLottieReact
+          src="https://lottie.host/e41b9b00-935b-4d4e-a5a0-4ecbc6d40d10/xcrZFet3b5.lottie"
+          loop
+          autoplay
+        />
+      </div>
+      <div className="text-center mt-[-8rem] mb-5">
+        <Link
+          href="/"
+          className="mt-6 inline-block text-lg text-blue-500 hover:text-blue-700"
+        >
+          Go back to the Homepage
+        </Link>
+      </div>
+    </>
   );
-}
+};
 
-export default notfound;
+export default LottiePlayer;

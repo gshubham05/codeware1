@@ -57,7 +57,7 @@ export default function Dashboard() {
       alert("Failed to fetch students");
     }
   }
-
+  //fetch internship applications
   async function fetchApplications() {
     try {
       const token = localStorage.getItem("admin-auth");
@@ -69,7 +69,49 @@ export default function Dashboard() {
       alert("Failed to fetch applications");
     }
   }
+  // delete internship application
+  const handleDeleteIntern = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this intern record?"
+    );
+    if (!confirmDelete) return; // ❌ stop if user cancels
 
+    try {
+      const res = await fetch("/api/apply", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        setApplications(applications.filter((app) => app._id !== id));
+        alert("Intern deleted successfully ✅");
+      } else {
+        alert("Failed to delete intern ❌");
+      }
+    } catch (error) {
+      console.error("Error deleting intern:", error);
+      alert("Something went wrong ❌");
+    }
+  };
+
+  // ✅ Delete student
+  const handleDeleteStudent = async (id) => {
+    if (!confirm("Are you sure you want to delete this student?")) return;
+
+    const res = await fetch(`/api/students?id=${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      alert("Student deleted successfully!");
+      fetchStudents(); // refresh list
+    } else {
+      alert("Failed to delete student");
+    }
+  };
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -403,6 +445,14 @@ export default function Dashboard() {
                             {s.phone}
                           </td>
                           <td className="p-4 border-b max-w-md">{s.message}</td>
+                          <td className="p-2 border">
+                            <button
+                              onClick={() => handleDeleteStudent(s._id)}
+                              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                            >
+                              Delete
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -513,6 +563,14 @@ export default function Dashboard() {
                           </td>
                           <td className="p-4 border-b max-w-md">
                             {app.interest}
+                          </td>
+                          <td className="p-2 border">
+                            <button
+                              onClick={() => handleDeleteIntern(app._id)}
+                              className="bg-red-500 text-white px-3 py-1 rounded"
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                       ))}

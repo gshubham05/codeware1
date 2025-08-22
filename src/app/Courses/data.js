@@ -34,7 +34,7 @@ const courses = [
   {
     id: "full-stack-development",
     title: "Full Stack Development",
-    image: "/fullstack (1).jpg",
+    image: "/fullstack.jpg",
     description:
       "Master frontend and backend development with modern frameworks, databases, and cloud technologies.",
     type: "Professional Certificate",
