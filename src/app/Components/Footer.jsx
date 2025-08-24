@@ -2,8 +2,6 @@
 
 import {
   FaFacebookF,
-  FaTwitter,
-  FaYoutube,
   FaInstagram,
   FaLinkedin,
   FaMapMarkerAlt,
@@ -14,116 +12,148 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#040A26] text-white py-10 px-6 md:px-16">
+    <footer className="bg-[#040A26] text-white py-10 px-6 md:px-16" role="contentinfo">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Company Info */}
-        <div className="md:col-span-2">
-          <h2 className="text-3xl font-bold">Codeware IT Pvt Ltd</h2>
+        <section aria-labelledby="footer-about">
+          <h2 id="footer-about" className="text-3xl font-bold">
+            Codeware IT Pvt Ltd
+          </h2>
           <p className="mt-4 text-gray-300">
-            We provide top-notch training in Full Stack Development, Python,
-            Java, and other cutting-edge technologies. Master industry-relevant
-            skills and build a successful career in tech.
+            Codeware IT Pvt Ltd is the best coding and programming training
+            institute cum company in Dehradun, Uttarakhand. We provide top-notch
+            training in Full Stack Development, Python, Java, MERN stack, and other
+            cutting-edge technologies. Master industry-relevant skills and build a
+            successful career in tech.
           </p>
-        </div>
+        </section>
 
         {/* Courses */}
-        <div>
-          <h3 className="font-bold text-lg">Courses</h3>
+        <nav aria-labelledby="footer-courses">
+          <h3 id="footer-courses" className="font-bold text-lg">
+            Courses
+          </h3>
           <ul className="mt-2 space-y-2 text-gray-300">
             <li>
-              <Link href="/Courses/full-stack-development">
+              <Link href="/Courses/full-stack-development" title="Full Stack Development Course">
                 FULL STACK DEVELOPMENT
               </Link>
             </li>
             <li>
-              <Link href="/Courses/mern-stack-development">
+              <Link href="/Courses/mern-stack-development" title="MERN Stack Development Course">
                 MERN STACK DEVELOPMENT
               </Link>
             </li>
             <li>
-              <Link href="/Courses/programming-languages">
+              <Link href="/Courses/programming-languages" title="Programming Languages Course">
                 PROGRAMMING LANGUAGES
               </Link>
             </li>
             <li>
-              <Link href="/Courses/industrial-training">
+              <Link href="/Courses/industrial-training" title="Industrial Training Program">
                 INDUSTRIAL TRAINING
               </Link>
             </li>
           </ul>
-        </div>
+        </nav>
 
         {/* Quick Links */}
-        <div>
-          <h3 className="font-bold text-lg">Quick Links</h3>
+        <nav aria-labelledby="footer-quicklinks">
+          <h3 id="footer-quicklinks" className="font-bold text-lg">
+            Quick Links
+          </h3>
           <ul className="mt-2 space-y-2 text-gray-300">
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/" title="Go to Home page">
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="/Aboutus">About Us</Link>
+              <Link href="/Aboutus" title="Learn About Us">
+                About Us
+              </Link>
             </li>
             <li>
-              <Link href="/Courses">Courses</Link>
+              <Link href="/Courses" title="View Our Courses">
+                Courses
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact" title="Contact Codeware IT">
+                Contact
+              </Link>
             </li>
             <li>
-              <Link href="/blog">Blog</Link>
+              <Link href="/blog" title="Read Our Blog">
+                Blog
+              </Link>
             </li>
-
             <li>
-              <Link href="/PrivacyPolicy">Privacy Policy</Link>
+              <Link href="/PrivacyPolicy" title="View Privacy Policy">
+                Privacy Policy
+              </Link>
             </li>
           </ul>
-        </div>
+        </nav>
 
         {/* Address */}
-        <div>
-          <h3 className="font-bold text-lg">Address</h3>
+        <address aria-labelledby="footer-address" className="not-italic">
+          <h3 id="footer-address" className="font-bold text-lg">
+            Address
+          </h3>
           <ul className="mt-2 space-y-2 text-gray-300">
             <li>Codeware IT Pvt Ltd</li>
             <li>
-              <a href="https://www.google.com/maps/dir/30.3366144,78.053376/Codeware+IT+Pvt+Ltd,+Chugh+Colony,+27,+Nalapani+Rd,+Dehradun,+Uttarakhand+248001/@30.3308342,78.0463993,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3909298618cc0ad3:0xf57f033590318d10!2m2!1d78.0615611!2d30.33026?entry=ttu&g_ep=EgoyMDI1MDcxNi4wIKXMDSoASAFQAw%3D%3D" >
-              <FaMapMarkerAlt className="inline mr-2" /> Karanpur Dehradun,
-              Uttarakhand 248001
+              <a
+                href="https://goo.gl/maps/xu8jqx467KMPTKzY7"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Directions to Codeware IT Pvt Ltd"
+              >
+                <FaMapMarkerAlt className="inline mr-2" aria-hidden="true" /> Karanpur, Prem Nagar, Dehradun,
+                Uttarakhand 248001
               </a>
-              
             </li>
             <li>
-              <a href="mailto:gshubham.05@gmail.com"><FaEnvelope className="inline mr-2" /> gshubham.05@gmail.com</a>
+              <a href="mailto:gshubham.05@gmail.com" title="Send Email to Codeware IT">
+                <FaEnvelope className="inline mr-2" aria-hidden="true" /> gshubham.05@gmail.com
+              </a>
             </li>
             <li>
-              <a href="tel:9837218345"><FaPhoneAlt className="inline mr-2" /> +91 9837218345</a>
+              <a href="tel:+919837218345" title="Call Codeware IT">
+                <FaPhoneAlt className="inline mr-2" aria-hidden="true" /> +91 9837218345
+              </a>
             </li>
           </ul>
-        </div>
+        </address>
       </div>
 
       {/* Social Media */}
-      <div className="mt-8 flex justify-center space-x-6">
+      <div className="mt-8 flex justify-center space-x-6" role="navigation" aria-label="Social Media Links">
         <a
           href="https://www.facebook.com/share/1FKkhHpFEx/?mibextid=qi2Omg"
           className="text-gray-300 hover:text-white text-2xl"
+          aria-label="Facebook"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <FaFacebookF />
         </a>
-        {/* <a href="#" className="text-gray-300 hover:text-white text-2xl">
-          <FaTwitter />
-        </a>
-        <a href="#" className="text-gray-300 hover:text-white text-2xl">
-          <FaYoutube />
-        </a> */}
         <a
           href="https://www.instagram.com/codewareit.in?igsh=dnA3c3l5OWZpZGdx"
           className="text-gray-300 hover:text-white text-2xl"
+          aria-label="Instagram"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <FaInstagram />
         </a>
         <a
           href="https://www.linkedin.com/company/codeware-it-dehradun/"
           className="text-gray-300 hover:text-white text-2xl"
+          aria-label="LinkedIn"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           <FaLinkedin />
         </a>
@@ -131,7 +161,9 @@ export default function Footer() {
 
       {/* Copyright */}
       <div className="text-center mt-6 text-gray-400 text-sm">
-       <a href="https://wa.me/message/WF4V4DY7R53QH1"> © 2025 Codeware IT Pvt Ltd. All rights reserved.</a>
+        <a href="https://wa.me/message/WF4V4DY7R53QH1" title="WhatsApp Contact" rel="noopener noreferrer" target="_blank">
+          © 2025 Codeware IT Pvt Ltd. All rights reserved.
+        </a>
       </div>
     </footer>
   );
