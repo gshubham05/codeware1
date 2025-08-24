@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -16,10 +17,19 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title:
-    "Best Programming, MERN Stack & Internship Institute in Dehradun | CodewareIT Pvt Ltd",
+    "Top Coding Institute in Dehradun, Uttarakhand | Best MERN, Python, Java Training – CodewareIT Pvt Ltd",
   description:
-    "Join CodewareIT Pvt Ltd, the top programming and industrial training institute in Dehradun. Expert training in MERN Stack, Java, Python, PHP, Coding Internships, and real-world projects.",
+    "Looking for coding classes in Dehradun or Uttarakhand? CodewareIT Pvt Ltd offers top-notch MERN Stack, Java, Python courses, coding internships & IT training.",
   keywords: [
+    "coding institute Dehradun",
+    "IT training Dehradun",
+    "programming courses Uttarakhand",
+    "MERN stack institute Uttarakhand",
+    "python classes Dehradun",
+    "coding internship Dehradun",
+    "software development training Uttarakhand",
+    "industrial training Dehradun",
+    "coding bootcamp Dehradun",
     "best computer institute in Dehradun",
     "best python institute in Dehradun",
     "best computer institute in India",
@@ -54,39 +64,39 @@ export const metadata = {
     "software development internship in Dehradun",
     "best internship in IT in India",
     "coding internship in IT in India",
+    "best coding classes Uttarakhand",
+    "CodewareIT Dehradun",
+    "learn programming Dehradun",
+    "web development Uttarakhand",
+    "coding coaching Dehradun",
   ],
   author: "Shubham Goyal",
-  publisher: "Codeware IT Pvt Ltd",
-
+  publisher: "CodewareIT Pvt Ltd",
   openGraph: {
-    title: "CodewareIT Pvt Ltd - Best Training & Internship in IT, Dehradun",
+    title: "Best Coding Classes in Dehradun, Uttarakhand | CodewareIT Pvt Ltd",
     description:
-      "Join Codeware IT Pvt Ltd for the best internships & training in Python, Java, MERN, MEAN, PHP & Full Stack Development in Dehradun & India.",
+      "Advance your tech career with CodewareIT in Dehradun, Uttarakhand. Join courses in MERN stack, Python, Java & more. Real internships available.",
     url: "https://www.codewareit.in",
-    siteName: "Codeware IT Pvt Ltd",
+    siteName: "CodewareIT Pvt Ltd",
     images: [
       {
-        url: "https://www.codewareit.in/og-image.jpg", // Update with your OG image
+        url: "https://www.codewareit.in/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Codeware IT Pvt Ltd",
+        alt: "Top coding classes Dehradun Uttarakhand | CodewareIT",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
-
-  // ✅ Twitter card for SEO
   twitter: {
     card: "summary_large_image",
-    title: "CodewareIT Pvt Ltd - Best IT Internship & Training in Dehradun",
+    title: "Best Coding & Internship Institute in Dehradun, Uttarakhand",
     description:
-      "Get the best Coding & IT Internship in Dehradun with Codeware IT Pvt Ltd. Learn MERN, Next.js, Java, Python & Full Stack Development.",
+      "Join Dehradun's leading programming & IT training center – CodewareIT Pvt Ltd – for MERN, Python, Java, and coding internships in Uttarakhand.",
     images: ["https://www.codewareit.in/og-image.jpg"],
-    creator: "@codewareit", // replace with your Twitter handle if any
+    creator: "@codewareit",
   },
-
-  // ✅ Favicon & Manifest
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -100,9 +110,65 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <meta name="author" content={metadata.author} />
+        <meta name="description" content={metadata.description} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={metadata.openGraph.title} />
+        <meta property="og:description" content={metadata.openGraph.description} />
+        <meta property="og:url" content={metadata.openGraph.url} />
+        <meta property="og:site_name" content={metadata.openGraph.siteName} />
+        <meta property="og:type" content={metadata.openGraph.type} />
+        <meta property="og:locale" content={metadata.openGraph.locale} />
+        <meta property="og:image" content={metadata.openGraph.images[0].url} />
+        <meta property="og:image:width" content={metadata.openGraph.images[0].width} />
+        <meta property="og:image:height" content={metadata.openGraph.images[0].height} />
+        <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content={metadata.twitter.card} />
+        <meta name="twitter:title" content={metadata.twitter.title} />
+        <meta name="twitter:description" content={metadata.twitter.description} />
+        <meta name="twitter:image" content={metadata.twitter.images[0]} />
+        <meta name="twitter:creator" content={metadata.twitter.creator} />
+
+        {/* Favicon & Manifest */}
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* Structured Data for Local SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              name: "CodewareIT Pvt Ltd",
+              url: "https://www.codewareit.in",
+              logo: "https://www.codewareit.in/og-image.jpg",
+              description:
+                "Top coding training and internship institute in Dehradun, Uttarakhand specializing in MERN, Python, Java, and IT courses.",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Karanpur and Prem Nagar",
+                addressLocality: "Dehradun",
+                addressRegion: "Uttarakhand",
+                postalCode: "248001",
+                addressCountry: "IN",
+              },
+              telephone: "+91-9837218345",
+              email: "info@codewareit.in",
+            }),
+          }}
+        />
+      </Head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}
         <Whatsappicon />
