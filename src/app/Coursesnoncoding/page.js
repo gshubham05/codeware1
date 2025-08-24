@@ -4,15 +4,59 @@ import { useState } from "react";
 export default function NonCodingCoursesSection() {
   const [active, setActive] = useState("seo");
 
+  const seoKeywordsArray = [
+    "best computer institute in Dehradun",
+    "best python institute in Dehradun",
+    "best java institute in Dehradun",
+    "best MERN stack institute in Dehradun",
+    "best MEAN stack institute in Dehradun",
+    "best PHP programming institute in Dehradun",
+    "best programming institute in Dehradun",
+    "best full stack development Dehradun",
+    "industrial training in Dehradun",
+    "summer internship in Dehradun",
+    "best internship in IT in Dehradun",
+    "coding bootcamp in Dehradun",
+    "web development internship in Dehradun",
+    "software development internship in Dehradun",
+    "best computer institute in India",
+    "best python institute in India",
+    "best java institute in India",
+    "best MEAN stack institute in India",
+    "best PHP programming institute in India",
+    "best programming institute in India",
+    "best full stack development in India",
+    "industrial training in India",
+    "summer internship in India",
+    "best internship in IT in India",
+    "coding internship in IT in India",
+    "Bootstrap",
+    "Tailwind",
+    "HTML",
+    "CSS",
+    "JS",
+    "JWT",
+    "JSON",
+    "BSON",
+    "bcrypt",
+    "python",
+    "java",
+    "javascript",
+    "Codeware IT Pvt Ltd Dehradun",
+    "Shubham Goyal",
+    "9837218345",
+    "www.codewareit.in"
+  ];
+
   const nonCodingCourses = {
     seo: {
       title: "SEO & SEM",
       image: "/seo.png",
       description:
-        "Master Search Engine Optimization and Marketing to rank higher and attract targeted traffic.",
+        "Master Search Engine Optimization and Marketing to rank higher and attract targeted traffic with keywords like best computer institute in Dehradun, best python institute in India, and more.",
       type: "Digital Marketing Core",
       overview:
-        "Learn On-Page & Off-Page SEO, technical SEO, Google Ads, SEM strategies, and how to use tools like Google Search Console, Ahrefs, and SEMrush.",
+        "Learn On-Page & Off-Page SEO, technical SEO, Google Ads, SEM strategies, and how to use tools like Google Search Console, Ahrefs, and SEMrush. Improve your digital presence with relevant keywords including Java, Bootstrap, Tailwind, and JWT.",
       syllabus: [
         "SEO Fundamentals & Algorithms",
         "Keyword Research & Planning",
@@ -95,7 +139,7 @@ export default function NonCodingCoursesSection() {
   };
 
   return (
-    <section className="bg-gray-50 min-h-screen  mt-20">
+    <section className="bg-gray-50 min-h-screen mt-20">
       <section className="bg-gradient-to-br from-blue-700 to-indigo-800 text-white py-20 text-center px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-4xl font-extrabold leading-tight drop-shadow-md">
@@ -103,7 +147,11 @@ export default function NonCodingCoursesSection() {
           </h1>
           <p className="text-lg md:text-xl mt-4 opacity-90">
             Explore our range of non-coding courses designed to enhance your
-            skills in various domains.
+            skills in various domains and improve your career prospects in
+            programming technologies like Python, Java, JavaScript, MERN, and more.
+          </p>
+          <p className="mt-2 text-sm opacity-70">
+            Popular SEO Keywords: {seoKeywordsArray.join(", ")}
           </p>
         </div>
       </section>
@@ -147,8 +195,7 @@ export default function NonCodingCoursesSection() {
               <li key={key} className="snap-start shrink-0">
                 <button
                   onClick={() => setActive(key)}
-                  className={`relative whitespace-nowrap px-5 py-2 md:px-6 md:py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 overflow-hidden
-                  ${
+                  className={`relative whitespace-nowrap px-5 py-2 md:px-6 md:py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 overflow-hidden ${
                     active === key
                       ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105"
                       : "bg-white text-indigo-600 border border-indigo-300 hover:bg-indigo-50"
@@ -184,9 +231,6 @@ export default function NonCodingCoursesSection() {
                 <div className="flex gap-3 flex-wrap">
                   <span className="bg-blue-100 text-blue-800 px-3 py-1 text-sm rounded-full">
                     📘 {nonCodingCourses[active].type}
-                  </span>
-                  <span className="bg-gray-100 text-gray-700 px-3 py-1 text-sm rounded-full">
-                    ⏳ Duration: {nonCodingCourses[active].duration}
                   </span>
                 </div>
                 <div className="pt-5 flex flex-col gap-4 text-gray-800">
@@ -266,10 +310,7 @@ export default function NonCodingCoursesSection() {
                   </h4>
                   <ul className="space-y-2 list-disc list-inside text-gray-700">
                     {nonCodingCourses[active].syllabus.map((topic, index) => (
-                      <li
-                        key={index}
-                        className="hover:text-blue-600 transition"
-                      >
+                      <li key={index} className="hover:text-blue-600 transition">
                         {topic}
                       </li>
                     ))}
