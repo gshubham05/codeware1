@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="bg-[#040A26] text-white py-10 px-6 md:px-16" role="contentinfo">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Company Info */}
-        <section aria-labelledby="footer-about">
+        <section aria-labelledby="footer-about" className="md:col-span-2">
           <h2 id="footer-about" className="text-3xl font-bold">
             Codeware IT Pvt Ltd
           </h2>
