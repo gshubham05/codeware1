@@ -140,7 +140,7 @@ export default function HomePage() {
 
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-50 to-white py-20 px-6 md:px-16 relative overflow-hidden">
+        {/* <section className="bg-gradient-to-br from-blue-50 to-white py-20 px-6 md:px-16 relative overflow-hidden">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
             <div className="animate-fadeInLeft">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900">
@@ -173,7 +173,7 @@ export default function HomePage() {
               </article>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Courses Section */}
         <section id="courses" className="bg-white text-[#040A26] py-20 px-6" aria-label="Courses Offered">
@@ -203,15 +203,15 @@ export default function HomePage() {
         </section>
 
         {/* About Section */}
-        <section className="bg-gradient-to-r from-blue-800 to-purple-900 text-white py-24 text-center shadow-lg mt-[5rem]" aria-label="About CodewareIT">
+        {/* <section className="bg-gradient-to-r from-blue-800 to-purple-900 text-white py-24 text-center shadow-lg mt-[5rem]" aria-label="About CodewareIT">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold drop-shadow-lg">About Us</h2>
           <p className="text-lg md:text-xl mt-4 font-light">
             CodewareIT Pvt Ltd, located in Dehradun, Uttarakhand, is a leading company in coding education and IT training with top-notch programs and industry internships.
           </p>
-        </section>
+        </section> */}
 
         {/* History Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-100" aria-label="Our History Timeline">
+        {/* <section className="py-20 bg-gradient-to-b from-white to-gray-100" aria-label="Our History Timeline">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-5xl font-extrabold text-gray-900 text-center mb-12">Our History</h2>
             <div className="relative border-l-4 border-blue-500 pl-6">
@@ -231,10 +231,10 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Why Choose Us Section */}
-        <section className="py-20 bg-gradient-to-b from-blue-50 to-white mt-[4rem]" aria-label="Why Choose CodewareIT">
+        {/* <section className="py-20 bg-gradient-to-b from-blue-50 to-white mt-[4rem]" aria-label="Why Choose CodewareIT">
           <div className="max-w-6xl mx-auto px-6 text-center">
             <h2 className="text-5xl font-extrabold text-gray-800 mb-6">Why Choose Us?</h2>
             <p className="text-lg text-gray-600 mb-12">Empowering students with the best teaching methods to achieve academic success.</p>
@@ -271,7 +271,7 @@ export default function HomePage() {
               </article>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );
