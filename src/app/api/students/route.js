@@ -32,7 +32,7 @@ export async function POST(req) {
   // 📧 Send Email in HTML format
   await transporter.sendMail({
     from: `"Course Inquiry Portal" <${process.env.EMAIL_USER}>`,
-    to: "dccreator9068@gmail.com", // Change to your receiving email
+    to: "gshubham.05@gmail.com", // Change to your receiving email
     subject: "📚 New Course Enrollment Inquiry",
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
