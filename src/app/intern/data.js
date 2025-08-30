@@ -1,6 +1,6 @@
 const students = [
    {
-    id: "abhishek-maurya1",
+    id: "Abhishek-Maurya1",
     name: "abhishek-maurya",
     role: "Mern Stack Intern ",
     image: "/intern/abhishek-maurya.jpg",
