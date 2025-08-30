@@ -1,6 +1,14 @@
 // app/courseStudents.js (or wherever your structure is)
 const courseStudents = [
   {
+    id: "abhishek-maurya",
+    name: "abhishek-maurya",
+    role: "Mern Stack ",
+    image: "/intern/abhishek-maurya.jpg",
+    college: "Graphic Era Hill University",
+    placed: false, 
+  },
+  {
     id: "vikas-kandari",
     name: "Vikas-kandari",
     role: "Mern Stack ",
