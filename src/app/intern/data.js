@@ -1,4 +1,11 @@
 const students = [
+   {
+    id: "abhishek-maurya",
+    name: "abhishek-maurya",
+    role: "Mern Stack Intern ",
+    image: "/intern/abhishek-maurya.jpg",
+    college: "Graphic Era Hill University",
+  },
   {
     id: "Shalini-Bhatt",
     name: "Shalini Bhatt ",
