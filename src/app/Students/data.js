@@ -2,7 +2,7 @@
 const courseStudents = [
   {
     id: "Abhishek-Maurya",
-    name: "abhishek-maurya",
+    name: "Abhishek-Maurya",
     role: "MERN STACK ",
     image: "/intern/abhishek-maurya.jpg",
     college: "Graphic Era Hill University",
