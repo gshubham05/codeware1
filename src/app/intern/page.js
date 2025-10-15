@@ -16,7 +16,56 @@ export default function InternshipHome() {
     startIndex + ITEMS_PER_PAGE
   );
 
-  return (
+  return (<>
+    <Head>
+  {/* Title */}
+  <title>Codeware IT Dehradun | Web Development, MERN, ReactJS, Python, Java, PHP Internship</title>
+
+  {/* Meta Description */}
+  <meta
+    name="description"
+    content="Join Codeware IT Dehradun internship program to learn Web Development, MERN Stack, ReactJS, Python, Java, and PHP. Gain hands-on experience, live projects, and industry mentorship to jumpstart your career in IT."
+  />
+
+  {/* Keywords */}
+  <meta
+    name="keywords"
+    content="Codeware IT Dehradun, web development internship, MERN internship, ReactJS training, Python course, Java course, PHP training, IT internship Dehradun, coding internship, full stack development, live project training, IT career Dehradun"
+  />
+
+  {/* Robots */}
+  <meta name="robots" content="index, follow" />
+
+  {/* Canonical URL */}
+  <link rel="canonical" href="https://www.codewareit.in/intern" />
+
+  {/* Open Graph for Social Media */}
+  <meta property="og:title" content="Codeware IT Dehradun | Web Development Internship" />
+  <meta property="og:description" content="Upskill in Web Development, MERN Stack, ReactJS, Python, Java, and PHP with Codeware IT Dehradun internship program. Get real-world project experience and certification." />
+  <meta property="og:url" content="https://www.codewareit.in/intern" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.codewareit.in/codeware-logo.png" />
+
+  {/* Structured Data JSON-LD */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Codeware IT Pvt Ltd",
+        "url": "https://www.codewareit.in/intern",
+        "logo": "https://www.codewareit.in/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/people/CodeWare-It/61572717675222/",
+          "https://www.instagram.com/codewareit.in/",
+          "https://in.linkedin.com/company/codeware-it-dehradun"
+        ]
+      })
+    }}
+  />
+</Head>
+
     <main className="bg-gradient-to-r from-blue-800 to-purple-900  min-h-screen text-white mt-20">
       {/* Hero */}
       <section className="text-center py-16 px-6">
@@ -136,5 +185,6 @@ export default function InternshipHome() {
         </div>
       </section>
     </main>
+                       </>
   );
 }
