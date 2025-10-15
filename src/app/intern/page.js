@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Head from "next/head";
 import { useState } from "react";
 import students from "./data"; // ✅ imported here
 
