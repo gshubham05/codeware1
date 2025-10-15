@@ -19,6 +19,12 @@ const students = [
     role: "Frontend Intern",
     image: "/intern/shalini.jpeg",
     college: "BTKIT Dwarahat",
+  },{
+    id: "Lovey-Chauhan",
+    name: "Lovey Chauhan",
+    role: "Backend Intern",
+    image: "/intern/Lovey.jpeg",
+    college: "Graphic Era University Dehradun",
   },
   {
     id: "Shweta-Bhatt",
