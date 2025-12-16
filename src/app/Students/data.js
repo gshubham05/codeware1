@@ -1,5 +1,13 @@
 // app/courseStudents.js (or wherever your structure is)
 const courseStudents = [
+   {
+    id: "Sakshi-Bora",
+    name: "Sakshi-Bora",
+    role: "Core Python ",
+    image: "/intern/sakshi-bora.jpg",
+    college: "G.B.P.U.A&T Pantnagar",
+    placed: false, 
+  },
   {
     id: "Abhishek-Maurya",
     name: "Abhishek-Maurya",
