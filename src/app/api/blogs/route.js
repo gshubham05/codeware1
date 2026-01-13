@@ -1,25 +1,35 @@
 import { NextResponse } from "next/server";
 import Blog from "../../models/Blog";
 import { connectDB } from "../../lib/db";
+import { verifyToken } from "../../middleware/auth";
 
-// GET - fetch all blogs
-export async function GET() {
+
+// 🔐 GET
+export async function GET(req) {
   await connectDB();
+
+  const user = verifyToken(req);
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
     return NextResponse.json(blogs);
   } catch (err) {
-    console.error("❌ Error in GET /api/blogs:", err); // Add this
-    return NextResponse.json(
-      { error: "Failed to fetch blogs" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
   }
 }
 
-// POST - create blog (image already uploaded from frontend)
+
+// 🔐 POST
 export async function POST(req) {
   await connectDB();
+
+  const user = verifyToken(req);
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
   try {
     const { title, description, content, image, date, readTime, category } =
@@ -40,13 +50,13 @@ export async function POST(req) {
       date,
       readTime,
       category,
+      createdBy: user.userId   // 🔥 track who posted
     });
 
     await blog.save();
 
     return NextResponse.json(blog, { status: 201 });
   } catch (error) {
-    console.error("POST /api/blogs error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
