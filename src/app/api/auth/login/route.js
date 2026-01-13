@@ -8,9 +8,14 @@ export async function POST(req) {
     username === process.env.ADMIN_USERNAME &&
     password === process.env.ADMIN_PASSWORD
   ) {
-    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    const token = jwt.sign(
+      {
+        username,
+        role: "admin"   // 🔥 VERY IMPORTANT
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
 
     return NextResponse.json({ success: true, token });
   }
