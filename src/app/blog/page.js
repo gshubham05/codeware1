@@ -13,23 +13,10 @@ export default function Blog() {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const token = localStorage.getItem("token"); // JWT from login
-
-        if (!token) {
-          alert("Please login to view blogs");
-          return;
-        }
-
-        const { data } = await axios.get("/api/blogs", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-
+        const { data } = await axios.get("/api/blogs"); // 🔓 PUBLIC
         setBlogPosts(data);
       } catch (error) {
         console.error("Failed to fetch blogs", error);
-        alert("Session expired. Please login again.");
       }
     }
 
@@ -53,7 +40,7 @@ export default function Blog() {
             currentPosts.map((post) => (
               <article
                 key={post._id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition"
               >
                 <div className="relative h-48 w-full">
                   <Image
@@ -89,7 +76,6 @@ export default function Blog() {
           )}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-10">
             {[...Array(totalPages)].map((_, i) => (
