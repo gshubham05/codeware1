@@ -5,25 +5,7 @@ import { verifyToken } from "../../middleware/auth";
 import nodemailer from "nodemailer";
 
 /* ============================
-   GET → Admin Only
-============================ */
-export async function GET(req) {
-  try {
-    const user = verifyToken(req);
-    if (!user || user.role !== "admin") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    await connectDB();
-    const students = await Student.find().sort({ createdAt: -1 });
-    return NextResponse.json(students);
-  } catch (error) {
-    return NextResponse.json({ error: "Server Error" }, { status: 500 });
-  }
-}
-
-/* ============================
-   POST → Public (Lead Form)
+   POST → PUBLIC (Lead Form)
 ============================ */
 export async function POST(req) {
   try {
@@ -38,7 +20,7 @@ export async function POST(req) {
       );
     }
 
-    // Save to MongoDB
+    // ✅ SAVE TO MONGODB (FIRST)
     const student = await Student.create({
       name,
       email,
@@ -47,63 +29,41 @@ export async function POST(req) {
       qualification,
     });
 
-    // Email Notification
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    /* ============================
+       EMAIL (OPTIONAL - SAFE)
+    ============================ */
+    try {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
 
-    await transporter.sendMail({
-      from: `"Codeware IT Leads" <${process.env.EMAIL_USER}>`,
-      to: "gshubham.05@gmail.com",
-      subject: "📚 New Course Enquiry",
-      html: `
-        <h2>New Student Enquiry</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Course:</b> ${course}</p>
-        <p><b>Qualification:</b> ${qualification}</p>
-      `,
-    });
+      await transporter.sendMail({
+        from: `"Codeware IT Leads" <${process.env.EMAIL_USER}>`,
+        to: "gshubham.05@gmail.com",
+        subject: "📚 New Course Enquiry",
+        html: `
+          <h2>New Student Enquiry</h2>
+          <p><b>Name:</b> ${name}</p>
+          <p><b>Email:</b> ${email}</p>
+          <p><b>Phone:</b> ${phone}</p>
+          <p><b>Course:</b> ${course}</p>
+          <p><b>Qualification:</b> ${qualification}</p>
+        `,
+      });
+    } catch (mailError) {
+      console.error("⚠️ Email failed but data saved:", mailError);
+    }
 
     return NextResponse.json({ success: true, student });
   } catch (error) {
-    console.error("❌ Lead save error:", error);
+    console.error("❌ API ERROR:", error);
     return NextResponse.json(
-      { error: "Failed to save enquiry" },
+      { error: "Server error" },
       { status: 500 }
     );
-  }
-}
-
-/* ============================
-   DELETE → Admin Only
-============================ */
-export async function DELETE(req) {
-  try {
-    const user = verifyToken(req);
-    if (!user || user.role !== "admin") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    await connectDB();
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
-
-    if (!id) {
-      return NextResponse.json(
-        { error: "Student ID required" },
-        { status: 400 }
-      );
-    }
-
-    await Student.findByIdAndDelete(id);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
