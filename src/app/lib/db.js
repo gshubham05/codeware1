@@ -1,32 +1,27 @@
 import mongoose from "mongoose";
 
-let cached = global.mongoose;
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
+let isConnected = false;
 
 export async function connectDB() {
-  // 🔥 Skip DB connection during build
-  if (process.env.NEXT_PHASE === "phase-production-build") {
-    console.log("⏭️ Skipping DB connection during build");
+  if (isConnected) return;
+
+  const uri = process.env.MONGODB_URI;
+
+  // ❗ Build-time safety
+  if (!uri) {
+    console.warn("⚠️ MONGODB_URI missing (skipped at build time)");
     return;
   }
 
-  if (cached.conn) return cached.conn;
-
-  if (!process.env.MONGODB_URI) {
-    throw new Error("MONGODB_URI missing");
-  }
-
-  cached.promise =
-    cached.promise ||
-    mongoose.connect(process.env.MONGODB_URI, {
+  try {
+    await mongoose.connect(uri, {
       dbName: "codewareit",
     });
 
-  cached.conn = await cached.promise;
-  console.log("✅ MongoDB Connected");
-
-  return cached.conn;
+    isConnected = true;
+    console.log("✅ MongoDB connected");
+  } catch (error) {
+    console.error("❌ MongoDB connection error:", error);
+    throw error;
+  }
 }
