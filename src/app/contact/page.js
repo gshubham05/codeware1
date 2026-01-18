@@ -30,33 +30,54 @@ export default function ContactUs() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setSuccessMsg("");
-    setErrorMsg("");
+  e.preventDefault();
+  setLoading(true);
+  setSuccessMsg("");
+  setErrorMsg("");
 
-    try {
-      await axios.post("/api/students", formData);
+  try {
+    await axios.post("/api/students", formData);
 
-      // 🔥 META PIXEL LEAD EVENT
-      if (typeof window !== "undefined" && window.fbq) {
-        window.fbq("track", "Lead");
-      }
+    // 🔥 META LEAD EVENT
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "Lead");
 
-      setSuccessMsg("Thank you! Our team will contact you shortly.");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        course: "",
-        qualification: "",
+      // 🔥 WhatsApp Click Tracking
+      window.fbq("track", "Contact", {
+        method: "WhatsApp",
       });
-    } catch (error) {
-      setErrorMsg("Failed to send message. Please try again.");
-    } finally {
-      setLoading(false);
     }
-  };
+
+    setSuccessMsg("Thank you! Redirecting to WhatsApp...");
+
+    // 📲 WhatsApp Redirect
+    const message = `Hello Codeware IT 👋
+I am interested in the ${formData.course} course.
+Name: ${formData.name}
+Qualification: ${formData.qualification}
+Phone: ${formData.phone}`;
+
+    const whatsappURL = `https://wa.me/919837218345?text=${encodeURIComponent(
+      message
+    )}`;
+
+    setTimeout(() => {
+      window.open(whatsappURL, "_blank");
+    }, 1000);
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      course: "",
+      qualification: "",
+    });
+  } catch (error) {
+    setErrorMsg("Failed to send message. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="relative w-full min-h-screen bg-blue-900 text-white">
