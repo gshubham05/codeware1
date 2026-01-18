@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const studentSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  phone: String,
-  message: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
+const StudentSchema = new mongoose.Schema(
+  {
+    name: String,
+    email: String,
+    phone: String,
+    course: String,
+    qualification: String,
   },
-});
+  { timestamps: true }
+);
 
 export default mongoose.models.Student ||
-  mongoose.model("Student", studentSchema);
+  mongoose.model("Student", StudentSchema);
