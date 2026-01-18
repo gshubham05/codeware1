@@ -4,60 +4,85 @@ import { connectDB } from "../../lib/db";
 import { verifyToken } from "../../middleware/auth";
 import nodemailer from "nodemailer";
 
-
-// ============================
-// GET → Admin Only
-// ============================
+/* ============================
+   GET → Admin Only
+============================ */
 export async function GET(req) {
-  const user = verifyToken(req);
-  if (!user || user.role !== "admin") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const user = verifyToken(req);
+    if (!user || user.role !== "admin") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    await connectDB();
+    const students = await Student.find().sort({ createdAt: -1 });
+    return NextResponse.json(students);
+  } catch (error) {
+    return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
-
-  await connectDB();
-  const students = await Student.find();
-  return NextResponse.json(students);
 }
 
-
-// ============================
-// POST → Public (Lead Form)
-// ============================
+/* ============================
+   POST → Public (Lead Form)
+============================ */
 export async function POST(req) {
-  await connectDB();
-  const { name, email, phone, message } = await req.json();
+  try {
+    await connectDB();
 
-  const student = new Student({ name, email, phone, message });
-  await student.save();
+    const { name, email, phone, course, qualification } = await req.json();
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+    if (!name || !email || !phone || !course || !qualification) {
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 }
+      );
+    }
 
-  await transporter.sendMail({
-    from: `"Course Inquiry Portal" <${process.env.EMAIL_USER}>`,
-    to: "gshubham.05@gmail.com",
-    subject: "📚 New Course Enrollment Inquiry",
-    html: `
-      <h2>New Course Inquiry</h2>
-      <p><b>Name:</b> ${name}</p>
-      <p><b>Email:</b> ${email}</p>
-      <p><b>Phone:</b> ${phone}</p>
-      <p><b>Course:</b> ${message || "N/A"}</p>
-    `,
-  });
+    // Save to MongoDB
+    const student = await Student.create({
+      name,
+      email,
+      phone,
+      course,
+      qualification,
+    });
 
-  return NextResponse.json({ success: true, student });
+    // Email Notification
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Codeware IT Leads" <${process.env.EMAIL_USER}>`,
+      to: "gshubham.05@gmail.com",
+      subject: "📚 New Course Enquiry",
+      html: `
+        <h2>New Student Enquiry</h2>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Phone:</b> ${phone}</p>
+        <p><b>Course:</b> ${course}</p>
+        <p><b>Qualification:</b> ${qualification}</p>
+      `,
+    });
+
+    return NextResponse.json({ success: true, student });
+  } catch (error) {
+    console.error("❌ Lead save error:", error);
+    return NextResponse.json(
+      { error: "Failed to save enquiry" },
+      { status: 500 }
+    );
+  }
 }
 
-
-// ============================
-// DELETE → Admin Only
-// ============================
+/* ============================
+   DELETE → Admin Only
+============================ */
 export async function DELETE(req) {
   try {
     const user = verifyToken(req);
@@ -70,15 +95,15 @@ export async function DELETE(req) {
     const id = searchParams.get("id");
 
     if (!id) {
-      return NextResponse.json({ error: "Student ID is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Student ID required" },
+        { status: 400 }
+      );
     }
 
     await Student.findByIdAndDelete(id);
-
     return NextResponse.json({ success: true });
-
   } catch (error) {
-    console.error("❌ Error deleting student:", error);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
