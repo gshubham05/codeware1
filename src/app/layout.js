@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Whatsappicon from "./Components/Whatsappicon";
 import MetaPixel from "./Components/MetaPixel";
+import RouteChangeTracker from "./Components/RouteChangeTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -172,6 +173,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <MetaPixel />
+        <RouteChangeTracker />
         <Navbar />
         {children}
         <Whatsappicon />
