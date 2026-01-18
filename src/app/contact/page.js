@@ -169,20 +169,47 @@ Phone: ${formData.phone}`;
               {/* Course */}
               <div className="flex items-center border rounded-lg px-4 py-3 focus-within:border-blue-600">
                 <FaBookOpen className="text-gray-500 mr-3" />
-                <select
-                  name="course"
-                  className="w-full outline-none bg-transparent text-lg"
-                  value={formData.course}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Course Interested</option>
-                  <option value="MERN Stack">MERN Stack</option>
-                  <option value="Next.js">Next.js</option>
-                  <option value="Python">Python</option>
-                  <option value="Java">Java</option>
-                  <option value="SEO">SEO</option>
-                </select>
+               <select
+  name="course"
+  className="w-full outline-none bg-transparent text-lg"
+  value={formData.course}
+  onChange={handleChange}
+  required
+>
+  <option value="">Select Course</option>
+
+  <optgroup label="Web Development">
+    <option value="MERN Stack">MERN Stack</option>
+    <option value="Next.js">Next.js</option>
+  </optgroup>
+
+  <optgroup label="Programming Languages">
+    <option value="Python">Python</option>
+    <option value="Java">Java</option>
+    <option value="PHP">PHP</option>
+    <option value="C++">C++</option>
+    <option value="C#">C#</option>
+  </optgroup>
+
+  <optgroup label="Animation & Motion">
+    <option value="GSAP">GSAP</option>
+    <option value="Three.js">Three.js</option>
+    <option value="Framer Motion">Framer Motion</option>
+  </optgroup>
+
+  <optgroup label="Internship">
+    <option value="MERN Internship">MERN Internship</option>
+    <option value="Next.js Internship">Next.js Internship</option>
+  </optgroup>
+
+  <optgroup label="Other Courses">
+    <option value="Digital Marketing">Digital Marketing</option>
+    <option value="Video Editing">Video Editing</option>
+    <option value="Photoshop">Photoshop</option>
+    <option value="Canva">Canva</option>
+  </optgroup>
+</select>
+
               </div>
 
               {/* Qualification */}
