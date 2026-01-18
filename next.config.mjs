@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["res.cloudinary.com"], // Add your Cloudinary domain here
   },
+  experimental: {
+    serverComponentsExternalPackages: ["mongoose"],
+  },
 };
 
 export default nextConfig;
