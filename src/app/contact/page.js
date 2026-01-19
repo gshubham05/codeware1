@@ -29,7 +29,7 @@ export default function ContactUs() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setSuccessMsg("");
@@ -38,19 +38,13 @@ export default function ContactUs() {
   try {
     await axios.post("/api/students", formData);
 
-    // 🔥 META LEAD EVENT
+    // 🔥 META EVENTS
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "Lead");
-
-      // 🔥 WhatsApp Click Tracking
-      window.fbq("track", "Contact", {
-        method: "WhatsApp",
-      });
+      window.fbq("track", "Contact", { method: "WhatsApp" });
     }
 
-    setSuccessMsg("Thank you! Redirecting to WhatsApp...");
-
-    // 📲 WhatsApp Redirect
+    // 📲 WhatsApp Message
     const message = `Hello Codeware IT 👋
 I am interested in the ${formData.course} course.
 Name: ${formData.name}
@@ -61,9 +55,10 @@ Phone: ${formData.phone}`;
       message
     )}`;
 
-    setTimeout(() => {
-      window.open(whatsappURL, "_blank");
-    }, 1000);
+    // ✅ OPEN IMMEDIATELY (NO DELAY)
+    window.open(whatsappURL, "_blank");
+
+    setSuccessMsg("Thank you! Redirecting to WhatsApp...");
 
     setFormData({
       name: "",
@@ -78,6 +73,7 @@ Phone: ${formData.phone}`;
     setLoading(false);
   }
 };
+;
 
   return (
     <div className="relative w-full min-h-screen bg-blue-900 text-white">
