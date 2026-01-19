@@ -76,7 +76,7 @@ Phone: ${formData.phone}`;
 };
 
   return (
-    <div className="relative w-full min-h-screen bg-blue-900 text-white">
+    <div className="relative top-[40px] w-full min-h-screen bg-blue-900 text-white">
       <div className="container mx-auto py-16 px-6">
         <div className="flex flex-col md:flex-row gap-12">
           {/* LEFT SIDE */}
